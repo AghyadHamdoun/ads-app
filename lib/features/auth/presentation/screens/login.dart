@@ -1,4 +1,5 @@
 import 'package:ads/core/utils/app_colors.dart';
+import 'package:ads/features/auth/presentation/screens/register.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -85,9 +86,9 @@ class _LoginScreenState extends State<LoginScreen> {
                               borderSide:
                                   BorderSide(color: AppColor.whiteColor)),
                           enabledBorder: const OutlineInputBorder(
-                              borderSide: BorderSide(color: AppColor.hintText)),
+                              borderSide: BorderSide(color: AppColor.whiteColor)),
                           disabledBorder: const OutlineInputBorder(
-                            borderSide: BorderSide(color: AppColor.hintText),
+                            borderSide: BorderSide(color: AppColor.whiteColor),
                           ),
                         ),
                         validator: (value) {
@@ -159,6 +160,25 @@ class _LoginScreenState extends State<LoginScreen> {
                   },
                 ),
               ),
+                    SizedBox(height: 10.h,),
+                    Row(
+                      children: [
+                        Text(
+                          " haven't an account?".tr(),
+                          style: TextStyle(
+                              fontSize: 14.sp, color: AppColor.whiteColor),
+                        ),SizedBox(width: 5.w,),InkWell(
+                          onTap: (){Navigator.push(
+                              context,
+                              MaterialPageRoute(builder: (context) => const RegisterScreen()));},
+                          child: Text(
+                            "register".tr(),
+                            style: TextStyle(
+                                fontSize: 14.sp, color: AppColor.whiteColor,fontWeight: FontWeight.bold),
+                          ),
+                        )
+                      ],
+                    ),
                     SizedBox(height: 20.h,),
                     Align(
                       alignment: Alignment.center,

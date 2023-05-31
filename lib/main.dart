@@ -1,6 +1,7 @@
 import 'package:ads/features/auth/presentation/screens/forgot_password.dart';
 import 'package:ads/features/auth/presentation/screens/login.dart';
 import 'package:ads/features/auth/presentation/screens/register.dart';
+import 'package:ads/features/onboarding/screens/onboarding.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -32,7 +33,7 @@ class MyApp extends StatelessWidget {
           colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
           useMaterial3: true,
         ),
-        home: const ForgotPasswordScreen(),
+        home: const OnBoardingScreen(),
         localizationsDelegates: context.localizationDelegates,
         supportedLocales: context.supportedLocales,
         locale: context.locale,

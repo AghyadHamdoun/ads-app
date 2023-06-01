@@ -75,7 +75,7 @@ class _PagesScreenState extends State<PagesScreen> with BaseMixin {
                   SizedBox(),
                   CallUsPage(),
                   SizedBox(),
-                  ProfilePage(),
+                  ProfileScreen(),
                 ],
               ),
               bottomNavigationBar: Theme(

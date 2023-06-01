@@ -1,50 +1,98 @@
-import 'package:cached_network_image/cached_network_image.dart';
+import 'package:ads/core/utils/app_colors.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-class ProfilePage extends StatefulWidget {
-  const ProfilePage({Key? key}) : super(key: key);
+class ProfileScreen extends StatelessWidget {
+  const ProfileScreen({Key? key}) : super(key: key);
 
-  @override
-  State<ProfilePage> createState() => _ProfilePageState();
-}
-
-class _ProfilePageState extends State<ProfilePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: SingleChildScrollView(
-        child: Padding(
-          padding:  EdgeInsets.symmetric(
-            horizontal: 12.w,
-            vertical: 8.h
-          ),
-          child: Column(
-            children: [
-              SizedBox(height: 20.h,),
-              Row(
-                children: [
-                  CachedNetworkImage(
-                    imageUrl: "http://via.placeholder.com/200x150",
-                    imageBuilder: (context, imageProvider) => Container(
-                      height:100.r,
-                      width: 100.r,
-                      decoration: BoxDecoration(
-                        image: DecorationImage(
-                            image: imageProvider,
-                            fit: BoxFit.cover,
-                            ),
+        body: SingleChildScrollView(
+            child: Column(
+              children: [
+                Container(
+                  color: AppColor.primaryColor,
+                  padding: EdgeInsets.symmetric(horizontal: 10.w),
+                  height: 0.25.sh,
+                  child: Row(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      Container(
+                        margin:
+                        EdgeInsets.symmetric(vertical: 10.h, horizontal: 10.w),
+                        height: 0.08.sh,
+                        width: 0.08.sh,
+                        decoration: BoxDecoration(
+                            color: Colors.black, shape: BoxShape.circle),
                       ),
-                    ),
-                    placeholder: (context, url) => CircularProgressIndicator(),
-                    errorWidget: (context, url, error) => Icon(Icons.error),
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          Text(
+                            "Ahmed mohsen",
+                            style: TextStyle(
+                                color: AppColor.white,
+                                fontSize: 20.sp,
+                                fontWeight: FontWeight.w400),
+                          ),
+                          SizedBox(
+                            height: 5.h,
+                          ),
+                          Container(
+                            decoration: BoxDecoration(
+                                color: Colors.blue,
+                                borderRadius: BorderRadius.circular(2)),
+                            alignment: Alignment.center,
+                            padding: EdgeInsets.symmetric(
+                                vertical: 2.h, horizontal: 5.w),
+                            child: Text(
+                              "Bronze",
+                              style:
+                              TextStyle(color: AppColor.white, fontSize: 14.sp),
+                            ),
+                          )
+                        ],
+                      ),
+                    ],
                   ),
-                ],
-              ),
-            ],
-          ),
-        ),
-      ),
-    );
-  }
+                ),
+                Container(
+                  padding: EdgeInsets.symmetric(horizontal: 10.w, vertical: 20.h),
+                  child: Column(
+                    children: [
+                      Row(
+                        children: [
+                          Icon(
+                            Icons.chat,
+                            size: 25.r,
+                            color: AppColor.colorExtended,
+                          ),
+                          SizedBox(
+                            width: 10.w,
+                          ),
+                          Text(
+                            "chats".tr(),
+                            style: TextStyle(
+                                color: AppColor.colorExtended, fontSize: 18.sp),
+                            textAlign: TextAlign.center,
+                          ),
+                          Spacer(),
+                          Icon(
+                            Icons.arrow_forward_ios,
+                            size: 20.r,
+                            color: AppColor.colorExtended,
+                          ),
+                        ],
+                      )
+                    ],
+                  ),
+                )
+              ],
+            ),
+            ),
+        );
+    }
 }

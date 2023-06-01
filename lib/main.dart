@@ -2,11 +2,14 @@ import 'package:ads/features/auth/presentation/screens/forgot_password.dart';
 import 'package:ads/features/auth/presentation/screens/login.dart';
 import 'package:ads/features/auth/presentation/screens/register.dart';
 import 'package:ads/features/onboarding/screens/onboarding.dart';
+import 'package:ads/features/pages/presentation/screens/profile.dart';
+import 'injection.dart' as di;
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 void main() async{
+  await di.init();
   WidgetsFlutterBinding.ensureInitialized();
   await EasyLocalization.ensureInitialized();
 
@@ -33,7 +36,7 @@ class MyApp extends StatelessWidget {
           colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
           useMaterial3: true,
         ),
-        home: const OnBoardingScreen(),
+        home: const ProfileScreen(),
         localizationsDelegates: context.localizationDelegates,
         supportedLocales: context.supportedLocales,
         locale: context.locale,

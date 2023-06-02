@@ -2,6 +2,7 @@ import 'package:ads/features/updateProfile/update_profile_screen.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'features/postProject/post_project_screen.dart';
 import 'injection.dart' as di;
 import 'features/auth/login/login.dart';
 import 'features/pages/pages_screen.dart';
@@ -39,7 +40,7 @@ class MyApp extends StatelessWidget {
               colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
               useMaterial3: true,
             ),
-            home: const PagesScreen(),
+            home: const PostProjectScreen(),
           ),
     );
   }

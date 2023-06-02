@@ -1,9 +1,12 @@
 
+import 'package:data_connection_checker_tv/data_connection_checker.dart';
 import 'package:dio/dio.dart';
 import 'package:get_it/get_it.dart';
 
 import 'core/constants/app_constants.dart';
 import 'features/pages/bloc/pages_bloc.dart';
+import 'features/postProject/api/get_types_objects.dart';
+import 'features/postProject/bloc/post_project_bloc.dart';
 
 
 
@@ -45,20 +48,23 @@ Future<void> init() async {
     },
   );
 
- // sl.registerLazySingleton(() => DataConnectionChecker());
+ sl.registerLazySingleton(() => DataConnectionChecker());
 
   // sl.registerSingleton<DataConnectionChecker>(DataConnectionChecker());
   //
   // //datasource
-  // sl.registerLazySingleton<LoginRemoteDataSource>(
-  //   () => LoginRemoteDataSourceImpl(dio: sl(), networkInfo: sl()),
-  // );
+  sl.registerLazySingleton<GetTypesObjectsRemoteDataSource>(
+    () => GetTypesObjectsRemoteDataSourceImpl(dio: sl(), networkInfo: sl()),
+  );
 
 
 
   // Bloc
   sl.registerLazySingleton(() => PagesBloc());
 
+  sl.registerLazySingleton(() => PostProjectBloc(
+    getTypesObjectsRemoteDataSource: sl()
+  ));
 
 
 

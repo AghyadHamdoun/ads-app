@@ -2,6 +2,9 @@ import 'package:easy_localization/easy_localization.dart';
 
 class AppConstants{
 
+  static const String baseUrl = "https://mobileapp.developerwaqas.com/api";
+  static const String login = "/login";
+
   //for images
   static const String baseImgURL = "https://landlord.cityproperties.ae/";
   static const String serverUrlTechImages ="http://tenant.cityproperties.ae";
@@ -14,7 +17,7 @@ class AppConstants{
   static const String serverUrl = "http://192.168.1.121:8080";
   static const String serverUrlExt = "/JobVisit/Rest/";
 
-  static const String baseUrl = serverUrl+serverUrlExt;
+ // static const String baseUrl = serverUrl+serverUrlExt;
   static const String logIn= "loginCollector/collector";
   static const String userPrivileges= "getPrivilegesCollector/collector";
   static const String techJobs= "techCollectorJobsListing/collector";

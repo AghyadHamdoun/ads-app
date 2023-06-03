@@ -40,11 +40,15 @@ dependencies:
   dartz: ^0.10.1
   flutter_bloc: ^8.1.3
   get_it: ^7.6.0
+  data_connection_checker_tv: ^0.3.5-nullsafety
+
+
   cached_network_image: ^3.2.3
   flutter_screenutil:
   easy_localization: ^3.0.2
   shared_preferences: ^2.1.1
-  data_connection_checker_tv: ^0.3.5-nullsafety
+  awesome_dialog: ^3.0.2
+  modal_progress_hud_nsn: ^0.4.0
 
 
 dev_dependencies:

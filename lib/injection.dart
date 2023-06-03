@@ -1,11 +1,8 @@
 
-import 'package:data_connection_checker_tv/data_connection_checker.dart';
 import 'package:dio/dio.dart';
 import 'package:get_it/get_it.dart';
 
 import 'core/constants/app_constants.dart';
-import 'features/auth/bloc/auth_bloc.dart';
-import 'features/auth/login/api/login_remote.dart';
 import 'features/pages/bloc/pages_bloc.dart';
 
 
@@ -48,19 +45,20 @@ Future<void> init() async {
     },
   );
 
- sl.registerLazySingleton(() => DataConnectionChecker());
+ // sl.registerLazySingleton(() => DataConnectionChecker());
 
-  // datasource
-  sl.registerLazySingleton<BaseLoginRemoteDataSource>(
-    () => LoginRemoteDataSource(dio: sl(), networkInfo: sl()),
-  );
+  // sl.registerSingleton<DataConnectionChecker>(DataConnectionChecker());
+  //
+  // //datasource
+  // sl.registerLazySingleton<LoginRemoteDataSource>(
+  //   () => LoginRemoteDataSourceImpl(dio: sl(), networkInfo: sl()),
+  // );
 
 
 
   // Bloc
   sl.registerLazySingleton(() => PagesBloc());
 
-  sl.registerLazySingleton(() => AuthBloc(loginRemoteDataSource: sl()));
 
 
 

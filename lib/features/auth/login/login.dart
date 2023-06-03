@@ -1,3 +1,4 @@
+
 import 'package:ads/core/utils/app_colors.dart';
 import 'package:ads/core/utils/enums.dart';
 import 'package:ads/features/auth/bloc/auth_bloc.dart';
@@ -65,6 +66,8 @@ class _LoginScreenState extends State<LoginScreen> {
             children: [
               Container(
                 height: 0.3.sh,
+                alignment: Alignment.center,
+                child: Image.asset('assets/images/logo-1.png',height: 150.h,width: 200.w,),
               ),
               Container(
                 padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 40.h),

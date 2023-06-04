@@ -3,6 +3,7 @@
 
 
 import 'package:built_value/built_value.dart';
+import '../../../core/model/message_model.dart';
 import '../model/type_and_object_model.dart';
 
 
@@ -22,9 +23,8 @@ abstract class PostProjectState implements Built<PostProjectState,
   String? get error;
   TypeModel? get type;
   TypeModel? get object;
-
   TypesAndObjectivesModel? get typesAndObjectivesModel;
-
+  MessageModel? get messageModel;
 
 
 
@@ -38,7 +38,7 @@ abstract class PostProjectState implements Built<PostProjectState,
     return PostProjectState((b) => b
       ..isLoading = false
       ..isSuccess = false
-      ..isSuccessPost = false
+      ..isLoadingPost = false
       ..isSuccessPost = false
       ..error=''
 

@@ -3,6 +3,7 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
+import '../../../core/customWidgets/custom_app_bar.dart';
 import '../../../core/customWidgets/elevated_button_widget.dart';
 import '../../../core/customWidgets/text_form_field_widget.dart';
 import '../../../core/utils/app_colors.dart';
@@ -10,7 +11,8 @@ import '../../../core/utils/app_colors.dart';
 
 
 class CallUsPage extends StatefulWidget {
-  const CallUsPage({Key? key}) : super(key: key);
+  final VoidCallback voidCallback;
+  const CallUsPage({Key? key,required this.voidCallback}) : super(key: key);
 
   @override
   State<CallUsPage> createState() => _CallUsPageState();
@@ -28,6 +30,18 @@ class _CallUsPageState extends State<CallUsPage> {
   @override
   Widget build(BuildContext context) {
     return  Scaffold(
+      appBar: PreferredSize(
+        preferredSize: Size(1.sw, 100.h),
+        child: CustomAppbar(
+          iconData: Icons.menu,
+          tittle: "Call Us".tr(),
+          voidCallback: () {
+            widget.voidCallback();
+            //Navigator.pop(context);
+          },
+        ),
+      ),
+
       body: SingleChildScrollView(
         child: Padding(
           padding:  EdgeInsets.symmetric(

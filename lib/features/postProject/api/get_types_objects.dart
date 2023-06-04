@@ -5,28 +5,23 @@ import 'package:dio/dio.dart';
 import '../../../core/constants/app_constants.dart';
 import '../model/type_and_object_model.dart';
 
-
-
 abstract class GetTypesObjectsRemoteDataSource {
   Future<Either<String, TypesAndObjectivesModel>> getGetTypesObjects();
 }
 
-class GetTypesObjectsRemoteDataSourceImpl extends GetTypesObjectsRemoteDataSource {
+class GetTypesObjectsRemoteDataSourceImpl
+    extends GetTypesObjectsRemoteDataSource {
   final Dio dio;
   final DataConnectionChecker networkInfo;
 
-
-  GetTypesObjectsRemoteDataSourceImpl({required this.dio, required this.networkInfo});
+  GetTypesObjectsRemoteDataSourceImpl(
+      {required this.dio, required this.networkInfo});
 
   @override
   Future<Either<String, TypesAndObjectivesModel>> getGetTypesObjects() async {
     if (await networkInfo.hasConnection) {
       try {
-        final re = await dio.get(
-            AppConstants.typesObjects,
-          data: {
-          }
-        );
+        final re = await dio.get(AppConstants.typesObjects, data: {});
 
         return Right(TypesAndObjectivesModel.fromJson(json.decode(re.data)));
       } on DioError catch (ex) {

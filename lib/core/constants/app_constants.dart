@@ -6,6 +6,9 @@ class AppConstants{
   static const String baseUrl = "https://mobileapp.developerwaqas.com/api/";
   static const String logIn= "";
   static const String typesObjects= "get-type-objective";
+  static const String postProject= "create-project";
+  static const String dashboardData= "get-dashboard-data/";
+
 
 
 

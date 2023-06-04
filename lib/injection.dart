@@ -5,7 +5,10 @@ import 'package:get_it/get_it.dart';
 
 import 'core/constants/app_constants.dart';
 import 'features/pages/bloc/pages_bloc.dart';
+import 'features/pages/home/api/get_dashboard_data.dart';
+import 'features/pages/home/bloc/home_bloc.dart';
 import 'features/postProject/api/get_types_objects.dart';
+import 'features/postProject/api/post_project_remote.dart';
 import 'features/postProject/bloc/post_project_bloc.dart';
 
 
@@ -56,14 +59,27 @@ Future<void> init() async {
   sl.registerLazySingleton<GetTypesObjectsRemoteDataSource>(
     () => GetTypesObjectsRemoteDataSourceImpl(dio: sl(), networkInfo: sl()),
   );
+  sl.registerLazySingleton<PostProjectDataSource>(
+        () => PostProjectDataSourceImpl(dio: sl(), networkInfo: sl()),
+  );
+  sl.registerLazySingleton<GetDashboardDetailsRemoteDataSource>(
+        () => GetDashboardDetailsRemoteDataSourceImpl(dio: sl(), networkInfo: sl()),
+  );
+
 
 
 
   // Bloc
   sl.registerLazySingleton(() => PagesBloc());
 
+  sl.registerLazySingleton(() => HomeBloc(
+    getDashboardDetailsRemoteDataSource: sl()
+  ));
+
+
   sl.registerLazySingleton(() => PostProjectBloc(
-    getTypesObjectsRemoteDataSource: sl()
+    getTypesObjectsRemoteDataSource: sl(),
+    postProjectDataSource: sl()
   ));
 
 

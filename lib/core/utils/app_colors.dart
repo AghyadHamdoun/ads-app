@@ -3,6 +3,12 @@ import 'package:flutter/material.dart';
 class AppColor {
   static const primaryColor = Color(0xff364e8c);
 
+  static const secondColor = Color(0xffD16492);
+
+  static const thirdColor = Color(0xff4285D1);
+
+  static const fourthColor = Color(0xffEBFEE4);
+
   static const accentColor =  Color(0xffccab79);
 
   static const whiteColor =  Color(0xffffffff);
@@ -37,7 +43,7 @@ class AppColor {
   static const Color colorBGRed = Color(0xFFDC143C);
   static const Color colorDimGreen = Color(0xFF50bab1);
   static const Color colorBlueTab = Color(0xFF30548f);
-  static const Color colorGrey = Color(0xFFF9F9F9);
+  static const Color colorGrey = Color(0xFFE8E8E8);
   static const Color colorOccupied = Color(0xFF5ea4d9);
   static const Color colorVacant = Color(0xFF88b227);
   static const Color colorRenewed = Color(0xFFc92a32);

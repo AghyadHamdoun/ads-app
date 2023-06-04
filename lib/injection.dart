@@ -68,7 +68,6 @@ Future<void> init() async {
 
 
 
-
   // Bloc
   sl.registerLazySingleton(() => PagesBloc());
 

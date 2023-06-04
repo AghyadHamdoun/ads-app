@@ -1,3 +1,4 @@
+import 'package:ads/Preference.dart';
 import 'package:ads/core/utils/enums.dart';
 import 'package:ads/features/auth/bloc/auth_event.dart';
 import 'package:ads/features/auth/bloc/auth_state.dart';
@@ -47,13 +48,18 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
          ..loginState =RequestState.error..loginMessage=l
          ));
        } , (r) {
-         if (r.user!=null) {
-           emit(state.rebuild((b) =>
+         if (r.accessToken!.isNotEmpty) {
+           emit(state.rebuild((b) {
                b
                ..loginState =RequestState.loaded
-               ..loginModel = r
+               ..loginModel = r;
 
-           ));
+               Preferences.saveUserToken(r.accessToken!);
+               Preferences.saveUserId(r.user!.id!);
+           Preferences.saveUserImage(r.user!.profilePicture!);
+           Preferences.saveUserName(r.user!.firstName!);
+
+         }));
          }
 
        });

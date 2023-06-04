@@ -42,8 +42,8 @@ class LoginRemoteDataSource extends BaseLoginRemoteDataSource {
         LoginModel loginModel = LoginModel.fromJson(json.decode(re.data));
         if (loginModel.user != null) {
           return Right(LoginModel.fromJson(json.decode(re.data)));
-        }  else{
-          return const Left("Invalid Credentials");
+        }  else {
+          return  Left(loginModel.message!);
         }
         
       } on DioError catch (ex) {

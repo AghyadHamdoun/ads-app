@@ -1,9 +1,12 @@
 
+import 'package:ads/features/auth/bloc/auth_bloc.dart';
+import 'package:ads/features/auth/login/api/login_remote.dart';
 import 'package:data_connection_checker_tv/data_connection_checker.dart';
 import 'package:dio/dio.dart';
 import 'package:get_it/get_it.dart';
 
 import 'core/constants/app_constants.dart';
+import 'features/auth/register/api/register_remote.dart';
 import 'features/pages/bloc/pages_bloc.dart';
 import 'features/pages/home/api/get_dashboard_data.dart';
 import 'features/pages/home/bloc/home_bloc.dart';
@@ -65,6 +68,13 @@ Future<void> init() async {
   sl.registerLazySingleton<GetDashboardDetailsRemoteDataSource>(
         () => GetDashboardDetailsRemoteDataSourceImpl(dio: sl(), networkInfo: sl()),
   );
+  sl.registerLazySingleton<BaseLoginRemoteDataSource>(
+        () => LoginRemoteDataSource(dio: sl(), networkInfo: sl()),
+  );
+
+  sl.registerLazySingleton<BaseRegisterRemoteDataSource>(
+        () => RegisterRemoteDataSource(dio: sl(), networkInfo: sl()),
+  );
 
 
 
@@ -79,6 +89,10 @@ Future<void> init() async {
   sl.registerLazySingleton(() => PostProjectBloc(
     getTypesObjectsRemoteDataSource: sl(),
     postProjectDataSource: sl()
+  ));
+
+  sl.registerLazySingleton(() => AuthBloc(loginRemoteDataSource: sl(), registerRemoteDataSource: sl()
+
   ));
 
 

@@ -3,6 +3,8 @@ import 'package:ads/features/auth/login/models/login_model.dart';
 import 'package:ads/features/auth/login/models/user_model.dart';
 import 'package:built_value/built_value.dart';
 
+import '../register/models/register_model.dart';
+
 
 part 'auth_state.g.dart';
 
@@ -12,6 +14,12 @@ abstract class AuthState implements Built<AuthState, AuthStateBuilder> {
   String? get loginMessage;
 
   LoginModel? get loginModel;
+
+  RequestState? get registerState;
+
+  String? get registerMessage;
+
+  RegisterModel? get registerModel;
 
   AuthState._();
 
@@ -43,6 +51,31 @@ abstract class AuthState implements Built<AuthState, AuthStateBuilder> {
           orderNumbers: null,
         ),
         accessToken: '',)
+
+      ..registerState = RequestState.nothing
+      ..registerMessage = ''
+      ..registerModel = RegisterModel(
+        type: '',
+        user: User(
+          id: 0,
+          firstName: '',
+          lastName: '',
+          description: '',
+          profilePicture: '',
+          email: '',
+          emailVerifiedAt: '',
+          contactNumber: '',
+          role: '',
+          status: '',
+          balance: '',
+          verificationCode: '',
+          mblConfirmationCode: '',
+          createdAt: '',
+          updatedAt: '',
+          averageRating: '',
+          orderNumbers: null,
+        ),
+        accessToken: '', message: '',)
     );
   }
 }

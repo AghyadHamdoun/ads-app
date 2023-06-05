@@ -12,6 +12,9 @@ class AppConstants{
   static const String typesObjects= "get-type-objective";
   static const String postProject= "create-project";
   static const String dashboardData= "get-dashboard-data/";
+  static const String register = "/register";
+
+
 
 
 

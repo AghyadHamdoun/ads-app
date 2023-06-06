@@ -2,7 +2,7 @@
 
 class MessageModel {
   String? status;
-  String? message;
+  var message;
   MessageModel({this.status, this.message});
 
   MessageModel.fromJson(Map<String, dynamic> json) {

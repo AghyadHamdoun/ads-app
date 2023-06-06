@@ -1,6 +1,3 @@
-
-
-
 import 'package:ads/features/postProject/bloc/post_project_state.dart';
 import 'package:ads/features/postProject/widgets/show_objective_bottom_sheet.dart';
 import 'package:awesome_dialog/awesome_dialog.dart';
@@ -19,36 +16,48 @@ import '../../core/customWidgets/text_form_field_widget.dart';
 import '../../core/utils/app_colors.dart';
 import '../../injection.dart';
 import 'bloc/post_project_bloc.dart';
+import 'model/type_and_object_model.dart';
 import 'widgets/show_types_bottom_sheet.dart';
 
-
-
 class PostProjectScreen extends StatefulWidget {
-  const PostProjectScreen({Key? key}) : super(key: key);
+  final String type;
+  final String name;
+  final String desc;
+  final String balance;
+  final String loc;
+  final String projectId;
+  final TypeModel? obj;
+  const PostProjectScreen({Key? key,required this.name,required this.balance,
+    required this.type,required this.desc,required this.loc,required this.obj,required this.projectId
+  }) : super(key: key);
 
   @override
   State<PostProjectScreen> createState() => _PostProjectScreenState();
 }
 
 class _PostProjectScreenState extends State<PostProjectScreen> {
-  TextEditingController adsName=TextEditingController();
-  TextEditingController adsDesc=TextEditingController();
-  TextEditingController adsBalance=TextEditingController();
-  TextEditingController location=TextEditingController();
+  TextEditingController adsName = TextEditingController();
+  TextEditingController adsDesc = TextEditingController();
+  TextEditingController adsBalance = TextEditingController();
+  TextEditingController location = TextEditingController();
 
-  PostProjectBloc postProjectBloc=sl<PostProjectBloc>();
-
+  PostProjectBloc postProjectBloc = sl<PostProjectBloc>();
 
   @override
   void initState() {
     postProjectBloc.add(GetTypesObjectsEvent());
+     adsName = TextEditingController(text: widget.name);
+     adsDesc = TextEditingController(text: widget.desc);
+     adsBalance = TextEditingController(text: widget.balance);
+     location = TextEditingController(text: widget.loc);
+    postProjectBloc.add(ChangeObjectEvent(widget.obj!));
+
     super.initState();
   }
 
-
   @override
   Widget build(BuildContext context) {
-    return  BlocConsumer<PostProjectBloc,PostProjectState>(
+    return BlocConsumer<PostProjectBloc, PostProjectState>(
       bloc: postProjectBloc,
       listener: (context, state) {
         if (state.messageModel != null) {
@@ -64,7 +73,7 @@ class _PostProjectScreenState extends State<PostProjectScreen> {
                 child: Text(
                   state.messageModel!.message!,
                   style:
-                  TextStyle(fontStyle: FontStyle.italic, fontSize: 14.sp),
+                      TextStyle(fontStyle: FontStyle.italic, fontSize: 14.sp),
                 ),
               ),
             ),
@@ -73,8 +82,7 @@ class _PostProjectScreenState extends State<PostProjectScreen> {
               Navigator.pop(context, 'ref');
             },
           ).show();
-        }
-        else if (state.error!.isNotEmpty) {
+        } else if (state.error!.isNotEmpty) {
           AwesomeDialog(
             context: context,
             animType: AnimType.scale,
@@ -85,7 +93,7 @@ class _PostProjectScreenState extends State<PostProjectScreen> {
                 child: Text(
                   state.error ?? "",
                   style:
-                  TextStyle(fontStyle: FontStyle.italic, fontSize: 14.sp),
+                      TextStyle(fontStyle: FontStyle.italic, fontSize: 14.sp),
                 ),
               ),
             ),
@@ -98,53 +106,46 @@ class _PostProjectScreenState extends State<PostProjectScreen> {
         }
       },
       builder: (context, state) {
-        return  ModalProgressHUD(
+        return ModalProgressHUD(
           inAsyncCall: state.isLoadingPost!,
           child: Scaffold(
             appBar: PreferredSize(
-              preferredSize: Size(1.sw,100.h),
+              preferredSize: Size(1.sw, 100.h),
               child: CustomAppbar(
                 iconData: Icons.arrow_back,
-                tittle: "New Advertisement".tr(),
-                voidCallback: (){
+                tittle: "${widget.type} Advertisement".tr(),
+                voidCallback: () {
                   Navigator.pop(context);
                 },
               ),
             ),
             body: SingleChildScrollView(
               child: Padding(
-                padding:  EdgeInsets.symmetric(
-                    horizontal: 12.w,
-                    vertical: 8.h
-                ),
+                padding: EdgeInsets.symmetric(horizontal: 12.w, vertical: 8.h),
                 child: Column(
                   children: [
-                    SizedBox(height: 50.h,),
+                    SizedBox(
+                      height: 50.h,
+                    ),
                     InkWell(
                       onTap: () async {
                         showObjectiveBottomSheet(
-                           ctx: context,
-                           bloc: postProjectBloc
-                        );
+                            ctx: context, bloc: postProjectBloc);
                       },
                       child: Padding(
-                        padding: EdgeInsets.symmetric(
-                            horizontal: 12.w),
+                        padding: EdgeInsets.symmetric(horizontal: 12.w),
                         child: Card(
                           color: AppColor.primaryColor,
                           elevation: 2,
                           child: Padding(
                               padding: EdgeInsets.symmetric(
-                                  vertical: 10.h,
-                                  horizontal: 12.w),
+                                  vertical: 10.h, horizontal: 12.w),
                               child: Row(
                                 children: [
                                   if (state.object != null)
                                     Icon(
-                                      Icons
-                                          .emoji_objects_outlined,
-                                      color:
-                                      AppColor.fourthColor,
+                                      Icons.emoji_objects_outlined,
+                                      color: AppColor.fourthColor,
                                       size: 19.sp,
                                     ),
                                   SizedBox(
@@ -153,13 +154,11 @@ class _PostProjectScreenState extends State<PostProjectScreen> {
                                   Expanded(
                                     child: Text(
                                       state.object != null
-                                          ? state.object!.name??""
+                                          ? state.object!.name ?? ""
                                           : 'Select Object'.tr(),
                                       style: TextStyle(
-                                          color: state.object !=
-                                              null
-                                              ? AppColor
-                                              .fourthColor
+                                          color: state.object != null
+                                              ? AppColor.fourthColor
                                               : AppColor.white,
                                           fontSize: 14.sp),
                                       textAlign: TextAlign.center,
@@ -170,32 +169,28 @@ class _PostProjectScreenState extends State<PostProjectScreen> {
                         ),
                       ),
                     ),
-                    SizedBox(height: 20.h,),
+                    SizedBox(
+                      height: 20.h,
+                    ),
                     InkWell(
                       onTap: () async {
                         showTypesBottomSheet(
-                            ctx: context,
-                            bloc: postProjectBloc
-                        );
+                            ctx: context, bloc: postProjectBloc);
                       },
                       child: Padding(
-                        padding: EdgeInsets.symmetric(
-                            horizontal: 12.w),
+                        padding: EdgeInsets.symmetric(horizontal: 12.w),
                         child: Card(
                           color: AppColor.thirdColor,
                           elevation: 2,
                           child: Padding(
                               padding: EdgeInsets.symmetric(
-                                  vertical: 10.h,
-                                  horizontal: 12.w),
+                                  vertical: 10.h, horizontal: 12.w),
                               child: Row(
                                 children: [
                                   if (state.type != null)
                                     Icon(
-                                      Icons
-                                          .type_specimen_outlined,
-                                      color:
-                                      AppColor.fourthColor,
+                                      Icons.type_specimen_outlined,
+                                      color: AppColor.fourthColor,
                                       size: 19.sp,
                                     ),
                                   SizedBox(
@@ -204,13 +199,11 @@ class _PostProjectScreenState extends State<PostProjectScreen> {
                                   Expanded(
                                     child: Text(
                                       state.type != null
-                                          ? state.type!.name??""
+                                          ? state.type!.name ?? ""
                                           : 'Select Type'.tr(),
                                       style: TextStyle(
-                                          color: state.type !=
-                                              null
-                                              ? AppColor
-                                              .fourthColor
+                                          color: state.type != null
+                                              ? AppColor.fourthColor
                                               : AppColor.white,
                                           fontSize: 14.sp),
                                       textAlign: TextAlign.center,
@@ -221,8 +214,9 @@ class _PostProjectScreenState extends State<PostProjectScreen> {
                         ),
                       ),
                     ),
-                    SizedBox(height: 20.h,),
-
+                    SizedBox(
+                      height: 20.h,
+                    ),
                     TextFormFieldWidget(
                       labelText: "Advertisement Name".tr(),
                       controller: adsName,
@@ -240,10 +234,8 @@ class _PostProjectScreenState extends State<PostProjectScreen> {
                       borderColor: AppColor.secondColor,
                       hintColor: AppColor.colorBlue,
                       labelColor: AppColor.unselectedIcon,
-
                       isDense: true,
                       focusBorderColor: AppColor.primaryColor,
-
                     ),
                     TextFormFieldWidget(
                       labelText: "Advertisement Balance".tr(),
@@ -252,9 +244,7 @@ class _PostProjectScreenState extends State<PostProjectScreen> {
                       borderColor: AppColor.secondColor,
                       hintColor: AppColor.colorBlue,
                       labelColor: AppColor.unselectedIcon,
-
                       textInputType: TextInputType.number,
-
                       isDense: true,
                       focusBorderColor: AppColor.primaryColor,
                     ),
@@ -265,45 +255,19 @@ class _PostProjectScreenState extends State<PostProjectScreen> {
                       borderColor: AppColor.secondColor,
                       hintColor: AppColor.colorBlue,
                       labelColor: AppColor.unselectedIcon,
-
-
                       isDense: true,
                       focusBorderColor: AppColor.primaryColor,
                     ),
-
                     SizedBox(
                       height: 10.h,
                     ),
                     SizedBox(
                       width: 1.sw,
                       child: ElevatedButtonWidget(
-                        onPressed: (){
-                            if(state.object==null)
-                          {
-                          Fluttertoast.showToast(
-                          msg: "Please Select Object".tr(),
-                          toastLength: Toast.LENGTH_SHORT,
-                          gravity: ToastGravity.CENTER,
-                          timeInSecForIosWeb: 1,
-                          backgroundColor: AppColor.primaryColor,
-                          textColor: Colors.white,
-                          fontSize: 16.0);
-                          }
-                          if(adsName.text.trim().isEmpty)
-                            {
-                              Fluttertoast.showToast(
-                                  msg: "Please Enter Advertisement Name".tr(),
-                                  toastLength: Toast.LENGTH_SHORT,
-                                  gravity: ToastGravity.CENTER,
-                                  timeInSecForIosWeb: 1,
-                                  backgroundColor: AppColor.primaryColor,
-                                  textColor: Colors.white,
-                                  fontSize: 16.0);
-                            }
-                          else  if(adsDesc.text.trim().isEmpty)
-                          {
+                        onPressed: () {
+                          if (state.object == null) {
                             Fluttertoast.showToast(
-                                msg: "Please Enter Advertisement Description".tr(),
+                                msg: "Please Select Object".tr(),
                                 toastLength: Toast.LENGTH_SHORT,
                                 gravity: ToastGravity.CENTER,
                                 timeInSecForIosWeb: 1,
@@ -311,8 +275,26 @@ class _PostProjectScreenState extends State<PostProjectScreen> {
                                 textColor: Colors.white,
                                 fontSize: 16.0);
                           }
-                          else  if(adsBalance.text.trim().isEmpty)
-                          {
+                          if (adsName.text.trim().isEmpty) {
+                            Fluttertoast.showToast(
+                                msg: "Please Enter Advertisement Name".tr(),
+                                toastLength: Toast.LENGTH_SHORT,
+                                gravity: ToastGravity.CENTER,
+                                timeInSecForIosWeb: 1,
+                                backgroundColor: AppColor.primaryColor,
+                                textColor: Colors.white,
+                                fontSize: 16.0);
+                          } else if (adsDesc.text.trim().isEmpty) {
+                            Fluttertoast.showToast(
+                                msg: "Please Enter Advertisement Description"
+                                    .tr(),
+                                toastLength: Toast.LENGTH_SHORT,
+                                gravity: ToastGravity.CENTER,
+                                timeInSecForIosWeb: 1,
+                                backgroundColor: AppColor.primaryColor,
+                                textColor: Colors.white,
+                                fontSize: 16.0);
+                          } else if (adsBalance.text.trim().isEmpty) {
                             Fluttertoast.showToast(
                                 msg: "Please Enter Advertisement Balance".tr(),
                                 toastLength: Toast.LENGTH_SHORT,
@@ -321,9 +303,7 @@ class _PostProjectScreenState extends State<PostProjectScreen> {
                                 backgroundColor: AppColor.primaryColor,
                                 textColor: Colors.white,
                                 fontSize: 16.0);
-                          }
-                          else  if(location.text.trim().isEmpty)
-                          {
+                          } else if (location.text.trim().isEmpty) {
                             Fluttertoast.showToast(
                                 msg: "Please Enter Location".tr(),
                                 toastLength: Toast.LENGTH_SHORT,
@@ -332,15 +312,15 @@ class _PostProjectScreenState extends State<PostProjectScreen> {
                                 backgroundColor: AppColor.primaryColor,
                                 textColor: Colors.white,
                                 fontSize: 16.0);
-                          }
-                          else{
-                            // String? userId = Preferences
-                            //     .preferences!
-                            //     .getString(
-                            //        KeyConstants.keyUserId);
-                            postProjectBloc
-                                .add(SetPostProjectEvent(
-                              object: {
+                          } else {
+                            String? userId = Preferences
+                                .preferences!
+                                .getString(
+                                   KeyConstants.keyUserId)??'42';
+                            postProjectBloc.add(SetPostProjectEvent(
+                              type: widget.type,
+                              object:widget.type=='New'?
+                              {
                                 "title": adsName.text,
                                 "description": adsDesc.text,
                                 "type": 0,
@@ -349,24 +329,30 @@ class _PostProjectScreenState extends State<PostProjectScreen> {
                                 "is_deleted": 0,
                                 "amount": adsBalance.text,
                                 "status": 1,
-                                "posted_by":42,
-                                "describe":"",
-                                "requested_to":"",
+                                "posted_by": userId,
+                                "describe": "",
+                                "requested_to": "",
+                              }:
+                              {
+                                "title": adsName.text,
+                                "description": adsDesc.text,
+                                "type": 0,
+                                "objective": state.object!.id!,
+                                "location": location.text,
+                                "amount": adsBalance.text,
+                                "project_id":widget.projectId
                               },
                             ));
                           }
-
-
                         },
                         text: 'Update'.tr(),
                         bgColor: AppColor.secondColor,
                         textColor: AppColor.white,
                       ),
                     ),
-
-                    SizedBox(height: 20.h,),
-
-
+                    SizedBox(
+                      height: 20.h,
+                    ),
                   ],
                 ),
               ),
@@ -374,7 +360,6 @@ class _PostProjectScreenState extends State<PostProjectScreen> {
           ),
         );
       },
-
     );
   }
 }

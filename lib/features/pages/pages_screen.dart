@@ -10,6 +10,7 @@ import '../../core/utils/app_colors.dart';
 import '../drawer/drawer_page.dart';
 import 'bloc/pages_bloc.dart';
 import 'bloc/pages_state.dart';
+import 'callUs/bloc/call_us_bloc.dart';
 import 'callUs/call_us_page.dart';
 import 'home/bloc/home_bloc.dart';
 import 'home/home_page.dart';
@@ -26,6 +27,7 @@ class _PagesScreenState extends State<PagesScreen> with BaseMixin {
   late PagesBloc pagesBloc;
 
   HomeBloc homeBloc=sl<HomeBloc>();
+  CallUsBloc callUsBloc=sl<CallUsBloc>();
 
   @override
   void initState() {
@@ -82,7 +84,9 @@ class _PagesScreenState extends State<PagesScreen> with BaseMixin {
                     HomePage(homeBloc: homeBloc,voidCallback: (){
                       Scaffold.of(context).openDrawer();
                     }),
-                    CallUsPage(voidCallback: (){
+                    CallUsPage(
+                        callUsBloc: callUsBloc,
+                        voidCallback: (){
                       Scaffold.of(context).openDrawer();
                     }),
                     SizedBox(),

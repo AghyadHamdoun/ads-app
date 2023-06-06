@@ -8,7 +8,7 @@ import '../../../core/model/message_model.dart';
 
 abstract class PostProjectDataSource {
   Future<Either<String, MessageModel>> createProject({
-   required Map<String, Object> obj
+   required Map<String, Object> obj,required String type
   });
 }
 
@@ -21,13 +21,14 @@ class PostProjectDataSourceImpl extends PostProjectDataSource {
   @override
   Future<Either<String, MessageModel>> createProject(
       {
-        required Map<String, Object> obj
+        required Map<String, Object> obj,required String type
       }
       ) async {
     if (await networkInfo.hasConnection) {
       try {
         final re = await dio.post(
-          AppConstants.postProject,
+        type=='New'?  AppConstants.postProject:
+        AppConstants.updateProject,
           data: obj
         );
         return Right(MessageModel.fromJson(json.decode(re.data)));

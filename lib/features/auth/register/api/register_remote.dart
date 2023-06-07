@@ -1,34 +1,47 @@
 import 'dart:convert';
 
 import 'package:ads/core/constants/app_constants.dart';
-import 'package:ads/features/auth/login/models/login_model.dart';
+import 'package:ads/features/auth/register/models/register_model.dart';
 import 'package:dartz/dartz.dart';
 import 'package:data_connection_checker_tv/data_connection_checker.dart';
 import 'package:dio/dio.dart';
 
-abstract class BaseLoginRemoteDataSource {
-  Future<Either<String, LoginModel>> login({
+abstract class BaseRegisterRemoteDataSource {
+  Future<Either<String, RegisterModel>> register({
+    required String firstName,
+    required String lastName,
     required String email,
     required String password,
+    required String contactNumber,
+    required String role
   });
 }
 
-class LoginRemoteDataSource extends BaseLoginRemoteDataSource {
+class RegisterRemoteDataSource extends BaseRegisterRemoteDataSource {
   final Dio dio;
   final DataConnectionChecker networkInfo;
 
-  LoginRemoteDataSource({required this.dio, required this.networkInfo});
+  RegisterRemoteDataSource({required this.dio, required this.networkInfo});
 
   @override
-  Future<Either<String, LoginModel>> login(
-      {required String email, required String password}) async {
+  Future<Either<String, RegisterModel>> register(
+      { required String firstName,
+        required String lastName,
+        required String email,
+        required String password,
+        required String contactNumber,
+        required String role}) async {
     if (await networkInfo.hasConnection) {
       try {
         final re = await dio.post(
-          AppConstants.login,
+          AppConstants.register,
           data: {
+            "first_name": firstName,
+            "last_name": lastName,
             "email": email,
             "password": password,
+            "contact_number": contactNumber,
+            "role": role,
           },
           options: Options(
             followRedirects: false,
@@ -39,13 +52,13 @@ class LoginRemoteDataSource extends BaseLoginRemoteDataSource {
         );
         print("re");
         print(re);
-        LoginModel loginModel = LoginModel.fromJson(json.decode(re.data));
-        if (loginModel.user != null) {
-          return Right(LoginModel.fromJson(json.decode(re.data)));
+        RegisterModel registerModel = RegisterModel.fromJson(json.decode(re.data));
+        if (registerModel.user != null) {
+          return Right(RegisterModel.fromJson(json.decode(re.data)));
         }  else {
-          return  Left(loginModel.message!);
+          return  Left(registerModel.message!);
         }
-        
+
       } on DioError catch (ex) {
         if (ex.type == DioErrorType.connectionTimeout) {
           return Left(Er.networkError);

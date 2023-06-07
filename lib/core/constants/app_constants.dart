@@ -4,6 +4,7 @@ class AppConstants{
 
   static const String baseUrl = "https://mobileapp.developerwaqas.com/api/";
   static const String login = "/login";
+  static const String register = "/register";
   static const String typesObjects= "get-type-objective";
   static const String postProject= "create-project";
   static const String dashboardData= "get-dashboard-data/";
@@ -16,6 +17,7 @@ class AppConstants{
   static const String updateProject= "update-project";
   static const String addAmount= "add-amount";
   static const String withdrawAmount= "make-withdrawl-request";
+
 
 
 

@@ -1,4 +1,3 @@
-
 import 'package:ads/core/utils/app_colors.dart';
 import 'package:ads/core/utils/enums.dart';
 import 'package:ads/features/auth/bloc/auth_bloc.dart';
@@ -53,6 +52,8 @@ class _LoginScreenState extends State<LoginScreen> {
         desc: state.loginMessage,
         btnCancelText: tr('ok'),
         btnCancelOnPress: () {},
+        btnCancelColor: AppColor.primaryColor,
+        btnOkColor: AppColor.primaryColor,
       ).show();
     }
   },

@@ -23,33 +23,36 @@ class ErrorTextWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return  Center(
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.center,
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Container(
-            padding: EdgeInsets.all(8.w),
-            child: Text(
-              error,
+      child: SizedBox(
+        height: 0.75.sh,
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Container(
+              padding: EdgeInsets.all(8.w),
+              child: Text(
+                error,
 
-              style: TextStyle(
-                fontSize: 16.sp,
-                fontWeight: FontWeight.w500,
-                color: color,
+                style: TextStyle(
+                  fontSize: 16.sp,
+                  fontWeight: FontWeight.w500,
+                  color: color,
+                ),
+                textAlign: TextAlign.center,
               ),
-              textAlign: TextAlign.center,
             ),
-          ),
-          MaterialButton(
-            color: AppColor.primaryColor,
-            onPressed: callback,
-           child: Text(buttonName??'Refresh'.tr(),style: TextStyle(
-             color: AppColor.white,
-             fontSize:14.sp,
+            MaterialButton(
+              color: AppColor.primaryColor,
+              onPressed: callback,
+             child: Text(buttonName??'Refresh'.tr(),style: TextStyle(
+               color: AppColor.white,
+               fontSize:14.sp,
 
-           )),
-          ),
-        ],
+             )),
+            ),
+          ],
+        ),
       ),
     );;
   }

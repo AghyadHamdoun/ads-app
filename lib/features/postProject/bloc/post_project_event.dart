@@ -17,13 +17,14 @@ class ChangeTypeEvent extends PostProjectEvent {
 }
 
 class ChangeObjectEvent extends PostProjectEvent {
-  final TypeModel type;
+  final TypeModel? type;
   const ChangeObjectEvent(this.type);
 }
 
 class SetPostProjectEvent extends PostProjectEvent {
   final Map<String, Object> object;
-  const SetPostProjectEvent({required this.object});
+  final String type;
+  const SetPostProjectEvent({required this.object,required this.type});
 }
 
 

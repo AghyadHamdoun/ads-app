@@ -28,6 +28,7 @@ class _HomePageState extends State<HomePage> with AutomaticKeepAliveClientMixin{
 
   @override
   Widget build(BuildContext context) {
+    super.build(context);
     return BlocConsumer<HomeBloc, HomeState>(
       bloc: widget.homeBloc,
       listener: (context, state) {},

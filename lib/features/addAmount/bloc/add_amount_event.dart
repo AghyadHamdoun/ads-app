@@ -6,8 +6,9 @@ part of 'add_amount_bloc.dart';
   List<Object?> get props => [];
 }
 
-class GetProfileDetailsEvent extends AddAmountEvent {
-
+class AddErrorEvent extends AddAmountEvent {
+  final String error;
+    const AddErrorEvent(this.error);
 }
 
 

@@ -50,10 +50,16 @@ class AddAmountBloc extends Bloc<AddAmountEvent, AddAmountState> {
 
         ));
 
-
-
       });
     });
+
+
+    on<AddErrorEvent>((event, emit) async {
+      emit(state.rebuild((b) =>
+      b
+        ..error = event.error
+
+      ));});
 
 
 

@@ -17,6 +17,11 @@ class AppConstants{
   static const String updateProject= "update-project";
   static const String addAmount= "add-amount";
   static const String withdrawAmount= "make-withdrawl-request";
+  static const String history= "get-history/";
+  static const String allAds= "get-project-details-to-bid";
+  static const String adsDetails= "get-project-details-by-id/";
+
+
 
 
 

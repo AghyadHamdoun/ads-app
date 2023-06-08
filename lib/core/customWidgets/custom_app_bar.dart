@@ -1,4 +1,5 @@
 
+import 'package:ads/features/notifications/notifications_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -10,12 +11,14 @@ class CustomAppbar extends StatelessWidget {
   final VoidCallback voidCallback;
   final String tittle;
   final IconData iconData;
+  bool? enableNotifications;
 
 
-  const CustomAppbar({Key? key,
+   CustomAppbar({Key? key,
       required this.voidCallback,
        required this.tittle,
-      required this.iconData
+      required this.iconData,
+       this.enableNotifications
       }) : super(key: key);
 
   @override
@@ -89,7 +92,10 @@ class CustomAppbar extends StatelessWidget {
                     ),
                     child: IconButton(
                       onPressed: (){
-
+                        if(enableNotifications??true) {
+                          Navigator.push(context, MaterialPageRoute(builder:
+                             (context) => const NotificationsScreen(),));
+                        }
                       },
                       icon: Icon(
                         Icons.notifications_outlined,

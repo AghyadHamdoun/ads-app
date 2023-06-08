@@ -48,6 +48,7 @@ dependencies:
   awesome_dialog: ^3.0.0
   fluttertoast: ^8.0.9
   modal_progress_hud_nsn: ^0.3.0
+  expandable: ^5.0.1
 
 dev_dependencies:
   flutter_test:

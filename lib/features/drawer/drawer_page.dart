@@ -6,7 +6,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../core/utils/app_colors.dart';
+import '../myAds/my_ads_screen.dart';
 import '../postProject/post_project_screen.dart';
+import '../updateProfile/update_profile_screen.dart';
 
 class DrawerPage extends StatelessWidget {
   const DrawerPage({Key? key}) : super(key: key);
@@ -40,7 +42,7 @@ class DrawerPage extends StatelessWidget {
                         'en') {
                       Navigator.of(context).pop();
 
-                      await context.setLocale(Locale('ar', 'SA'));
+                      await context.setLocale(const Locale('ar', 'SA'));
                     } else {
                       Navigator.of(context).pop();
                     }
@@ -56,7 +58,7 @@ class DrawerPage extends StatelessWidget {
                     if (Localizations.localeOf(context).languageCode ==
                         'ar') {
                       Navigator.of(context).pop();
-                      await context.setLocale(Locale('en', 'US'));
+                      await context.setLocale(const Locale('en', 'US'));
                     } else {
                       Navigator.of(context).pop();
                     }
@@ -78,7 +80,7 @@ class DrawerPage extends StatelessWidget {
                         'en') {
                       Navigator.of(context).pop();
 
-                      await context.setLocale(Locale('ar', 'SA'));
+                      await context.setLocale(const Locale('ar', 'SA'));
                     } else {
                       Navigator.of(context).pop();
                     }
@@ -158,7 +160,15 @@ class DrawerPage extends StatelessWidget {
               ),),
               onTap: () {
                 Navigator.push(context, MaterialPageRoute(builder:
-                    (context) => const PostProjectScreen(),));
+                    (context) =>  const PostProjectScreen(
+                      name: '',
+                      desc: '',
+                      type: 'New',
+                      balance: '',
+                      loc: '',
+                      obj: null,
+                      projectId: "",
+                    ),));
                 },
             ),
             ListTile(
@@ -166,6 +176,8 @@ class DrawerPage extends StatelessWidget {
                   fontSize: 14.sp
               ),),
               onTap: () {
+                Navigator.push(context, MaterialPageRoute(
+                  builder: (context) => const MyAdsScreen(),));
 
               },
             ),
@@ -198,8 +210,8 @@ class DrawerPage extends StatelessWidget {
                   fontSize: 14.sp
               ),),
               onTap: () {
-                // Handle option 1
-              },
+                Navigator.push(context, MaterialPageRoute(builder: (context) => const UpdateProfileScreen(),));
+               },
             ),
             ListTile(
               title: Text('Contact Us'.tr(),style: TextStyle(

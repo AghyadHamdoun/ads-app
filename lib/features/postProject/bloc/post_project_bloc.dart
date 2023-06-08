@@ -18,7 +18,7 @@ class PostProjectBloc extends Bloc<PostProjectEvent, PostProjectState> {
     required this.postProjectDataSource
   }) : super(PostProjectState.initial()) {
 
-    on<PostProjectEvent>((event, emit) async {
+    on<GetTypesObjectsEvent>((event, emit) async {
       emit(state.rebuild((b) =>
       b
         ..isSuccess = false
@@ -75,7 +75,8 @@ class PostProjectBloc extends Bloc<PostProjectEvent, PostProjectState> {
 
       ));
       final result = await postProjectDataSource.createProject(
-        obj: event.object
+        obj: event.object,
+        type: event.type
       );
       return result.fold((l) async {
 
@@ -91,6 +92,11 @@ class PostProjectBloc extends Bloc<PostProjectEvent, PostProjectState> {
         b ..isSuccess = true
           ..isLoadingPost = false
           ..messageModel = r
+
+        ));
+        emit(state.rebuild((b) =>
+        b
+          ..messageModel = null
 
         ));
 

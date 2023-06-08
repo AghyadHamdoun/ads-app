@@ -50,7 +50,6 @@ class Message {
   Null? type;
   Objective? objective;
   List<Bids>? bids;
-  Null? requestedUser;
 
   Message(
       {this.id,
@@ -72,7 +71,7 @@ class Message {
         this.type,
         this.objective,
         this.bids,
-        this.requestedUser});
+        });
 
   Message.fromJson(Map<String, dynamic> json) {
     id = json['id'];
@@ -104,7 +103,6 @@ class Message {
         bids!.add(Bids.fromJson(v));
       });
     }
-    requestedUser = json['requested_user'];
   }
 
   Map<String, dynamic> toJson() {
@@ -134,7 +132,6 @@ class Message {
     if (bids != null) {
       data['bids'] = bids!.map((v) => v.toJson()).toList();
     }
-    data['requested_user'] = requestedUser;
     return data;
   }
 }
@@ -146,7 +143,6 @@ class PostedBy {
   String? description;
   String? profilePicture;
   String? email;
-  Null? emailVerifiedAt;
   String? contactNumber;
   String? role;
   String? status;
@@ -165,7 +161,6 @@ class PostedBy {
         this.description,
         this.profilePicture,
         this.email,
-        this.emailVerifiedAt,
         this.contactNumber,
         this.role,
         this.status,
@@ -184,7 +179,6 @@ class PostedBy {
     description = json['description'];
     profilePicture = json['profile_picture'];
     email = json['email'];
-    emailVerifiedAt = json['email_verified_at'];
     contactNumber = json['contact_number'];
     role = json['role'];
     status = json['status'];
@@ -205,7 +199,6 @@ class PostedBy {
     data['description'] = description;
     data['profile_picture'] = profilePicture;
     data['email'] = email;
-    data['email_verified_at'] = emailVerifiedAt;
     data['contact_number'] = contactNumber;
     data['role'] = role;
     data['status'] = status;
@@ -317,7 +310,6 @@ class ProposalBy {
   String? description;
   String? profilePicture;
   String? email;
-  Null? emailVerifiedAt;
   String? contactNumber;
   String? role;
   String? status;
@@ -336,7 +328,6 @@ class ProposalBy {
         this.description,
         this.profilePicture,
         this.email,
-        this.emailVerifiedAt,
         this.contactNumber,
         this.role,
         this.status,
@@ -355,7 +346,6 @@ class ProposalBy {
     description = json['description'];
     profilePicture = json['profile_picture'];
     email = json['email'];
-    emailVerifiedAt = json['email_verified_at'];
     contactNumber = json['contact_number'];
     role = json['role'];
     status = json['status'];
@@ -376,7 +366,6 @@ class ProposalBy {
     data['description'] = description;
     data['profile_picture'] = profilePicture;
     data['email'] = email;
-    data['email_verified_at'] = emailVerifiedAt;
     data['contact_number'] = contactNumber;
     data['role'] = role;
     data['status'] = status;

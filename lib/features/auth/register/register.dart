@@ -24,11 +24,15 @@ class _RegisterScreenState extends State<RegisterScreen> {
 
   TextEditingController emailController = TextEditingController();
 
-  TextEditingController nameController = TextEditingController();
+  TextEditingController firstNameController = TextEditingController();
+
+  TextEditingController lastNameController = TextEditingController();
 
   TextEditingController numberController = TextEditingController();
 
   TextEditingController passwordController = TextEditingController();
+
+  String dropdownValue = 'advertiser'.tr();
 
   AuthBloc bloc = sl<AuthBloc>();
 
@@ -79,7 +83,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                   Container(
                     padding:
                         EdgeInsets.symmetric(horizontal: 20.w, vertical: 40.h),
-                    height: 0.8.sh,
+                    height: 1.sh,
                     width: double.infinity,
                     decoration: BoxDecoration(
                         borderRadius: BorderRadius.only(
@@ -101,9 +105,9 @@ class _RegisterScreenState extends State<RegisterScreen> {
                           SizedBox(
                             height: 20.h,
                           ),
-                          // name
+                          // first name
                           Text(
-                            "Name:".tr(),
+                            "first Name:".tr(),
                             style: TextStyle(
                                 fontSize: 16.sp,
                                 color: AppColor.whiteColor,
@@ -118,14 +122,14 @@ class _RegisterScreenState extends State<RegisterScreen> {
                             child: TextFormField(
                               style: TextStyle(
                                   fontSize: 16.sp, color: AppColor.whiteColor),
-                              controller: nameController,
+                              controller: firstNameController,
                               decoration: InputDecoration(
                                 contentPadding: EdgeInsets.only(
                                     top: 5.h,
                                     bottom: 10.h,
                                     right: 5.w,
                                     left: 5.w),
-                                hintText: "enter your name".tr(),
+                                hintText: "enter your first name".tr(),
                                 hintStyle: TextStyle(
                                   color: AppColor.hintText,
                                   fontSize: 14.sp,
@@ -144,6 +148,57 @@ class _RegisterScreenState extends State<RegisterScreen> {
                                 disabledBorder: const OutlineInputBorder(
                                   borderSide:
                                       BorderSide(color: AppColor.whiteColor),
+                                ),
+                              ),
+                              validator: (value) {
+                                if (value == null || value.isEmpty) {
+                                  return tr(
+                                    'Enter a valid name'.tr(),
+                                  );
+                                }
+                                return null;
+                              },
+                            ),
+                          ),
+
+                          // last name
+                          Text(
+                            "Last Name:".tr(),
+                            style: TextStyle(
+                                fontSize: 16.sp,
+                                color: AppColor.whiteColor,
+                                fontWeight: FontWeight.bold),
+                          ),
+                          SizedBox(
+                            height: 10.h,
+                          ),
+                          Container(
+                            margin: EdgeInsets.symmetric(vertical: 4.h),
+                            height: 50.h,
+                            child: TextFormField(
+                              style: TextStyle(
+                                  fontSize: 16.sp, color: AppColor.whiteColor),
+                              controller: lastNameController,
+                              decoration: InputDecoration(
+                                contentPadding: EdgeInsets.only(
+                                    top: 5.h,
+                                    bottom: 10.h,
+                                    right: 5.w,
+                                    left: 5.w),
+                                hintText: "enter your last name".tr(),
+                                hintStyle: TextStyle(
+                                  color: AppColor.hintText,
+                                  fontSize: 14.sp,
+                                ),
+                                focusedBorder: const OutlineInputBorder(
+                                    borderSide:
+                                    BorderSide(color: AppColor.whiteColor)),
+                                enabledBorder: const OutlineInputBorder(
+                                    borderSide:
+                                    BorderSide(color: AppColor.whiteColor)),
+                                disabledBorder: const OutlineInputBorder(
+                                  borderSide:
+                                  BorderSide(color: AppColor.whiteColor),
                                 ),
                               ),
                               validator: (value) {
@@ -339,10 +394,35 @@ class _RegisterScreenState extends State<RegisterScreen> {
                               },
                             ),
                           ),
-
-                          SizedBox(
-                            height: 10.h,
+                          //drop down
+                          Row(
+                            children: [
+                              Text('role:'.tr(),style: TextStyle(color: AppColor.white,fontSize: 16.sp),),
+                              SizedBox(width: 10.w,),
+                              DropdownButton<String>(
+                                dropdownColor: AppColor.primaryColor,
+                                value: dropdownValue,
+                                items: <String>['advertiser'.tr(), 'influencer'.tr()]
+                                    .map<DropdownMenuItem<String>>((String value) {
+                                      dropdownValue = value;
+                                  return DropdownMenuItem<String>(
+                                    value: dropdownValue,
+                                    child: Text(
+                                      value,
+                                      style: TextStyle(fontSize: 16.sp,color: AppColor.white),
+                                    ),
+                                  );
+                                }).toList(),
+                                // Step 5.
+                                onChanged: (String? newValue) {
+                                  setState(() {
+                                    dropdownValue = newValue!;
+                                  });
+                                },
+                              ),
+                            ],
                           ),
+
                           Row(
                             children: [
                               Text(
@@ -384,10 +464,10 @@ class _RegisterScreenState extends State<RegisterScreen> {
                                   bloc.onRegisterEvent(
                                       email: emailController.text,
                                       password: passwordController.text,
-                                      firstName: nameController.text,
-                                      lastName: '',
+                                      firstName: firstNameController.text,
+                                      lastName: lastNameController.text,
                                       contactNumber: numberController.text,
-                                      role: '');
+                                      role:dropdownValue.toString());
                                 } else {
                                   ScaffoldMessenger.of(context).showSnackBar(
                                     SnackBar(

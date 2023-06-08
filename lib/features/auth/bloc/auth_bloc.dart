@@ -35,7 +35,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
             emailVerifiedAt: '',
             contactNumber: '',
             role: '',
-            status: '',
+            status: 0,
             balance: '',
             verificationCode: '',
             mblConfirmationCode: '',
@@ -84,7 +84,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
             emailVerifiedAt: '',
             contactNumber: '',
             role: '',
-            status: '',
+            status: 0,
             balance: '',
             verificationCode: '',
             mblConfirmationCode: '',
@@ -118,7 +118,6 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
 
             Preferences.saveUserToken(r.accessToken!);
             Preferences.saveUserId(r.user!.id!);
-            Preferences.saveUserImage(r.user!.profilePicture!);
             Preferences.saveUserName(r.user!.firstName!);
           }));
         }

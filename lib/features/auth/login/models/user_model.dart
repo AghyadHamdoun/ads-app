@@ -9,7 +9,7 @@ class User {
   String? emailVerifiedAt;
   String? contactNumber;
   String? role;
-  String? status;
+  int? status;
   String? balance;
   String? verificationCode;
   String? mblConfirmationCode;

@@ -21,6 +21,8 @@ class _$AdsDetailsState extends AdsDetailsState {
   final AdsDetailsModel? adsDetailsModel;
   @override
   final MessageModel? messageModel;
+  @override
+  final bool haveOffer;
 
   factory _$AdsDetailsState([void Function(AdsDetailsStateBuilder)? updates]) =>
       (new AdsDetailsStateBuilder()..update(updates))._build();
@@ -32,8 +34,12 @@ class _$AdsDetailsState extends AdsDetailsState {
       this.isLoadingPost,
       this.error,
       this.adsDetailsModel,
-      this.messageModel})
-      : super._();
+      this.messageModel,
+      required this.haveOffer})
+      : super._() {
+    BuiltValueNullFieldError.checkNotNull(
+        haveOffer, r'AdsDetailsState', 'haveOffer');
+  }
 
   @override
   AdsDetailsState rebuild(void Function(AdsDetailsStateBuilder) updates) =>
@@ -53,7 +59,8 @@ class _$AdsDetailsState extends AdsDetailsState {
         isLoadingPost == other.isLoadingPost &&
         error == other.error &&
         adsDetailsModel == other.adsDetailsModel &&
-        messageModel == other.messageModel;
+        messageModel == other.messageModel &&
+        haveOffer == other.haveOffer;
   }
 
   @override
@@ -66,6 +73,7 @@ class _$AdsDetailsState extends AdsDetailsState {
     _$hash = $jc(_$hash, error.hashCode);
     _$hash = $jc(_$hash, adsDetailsModel.hashCode);
     _$hash = $jc(_$hash, messageModel.hashCode);
+    _$hash = $jc(_$hash, haveOffer.hashCode);
     _$hash = $jf(_$hash);
     return _$hash;
   }
@@ -79,7 +87,8 @@ class _$AdsDetailsState extends AdsDetailsState {
           ..add('isLoadingPost', isLoadingPost)
           ..add('error', error)
           ..add('adsDetailsModel', adsDetailsModel)
-          ..add('messageModel', messageModel))
+          ..add('messageModel', messageModel)
+          ..add('haveOffer', haveOffer))
         .toString();
   }
 }
@@ -120,6 +129,10 @@ class AdsDetailsStateBuilder
   set messageModel(MessageModel? messageModel) =>
       _$this._messageModel = messageModel;
 
+  bool? _haveOffer;
+  bool? get haveOffer => _$this._haveOffer;
+  set haveOffer(bool? haveOffer) => _$this._haveOffer = haveOffer;
+
   AdsDetailsStateBuilder();
 
   AdsDetailsStateBuilder get _$this {
@@ -132,6 +145,7 @@ class AdsDetailsStateBuilder
       _error = $v.error;
       _adsDetailsModel = $v.adsDetailsModel;
       _messageModel = $v.messageModel;
+      _haveOffer = $v.haveOffer;
       _$v = null;
     }
     return this;
@@ -160,7 +174,9 @@ class AdsDetailsStateBuilder
             isLoadingPost: isLoadingPost,
             error: error,
             adsDetailsModel: adsDetailsModel,
-            messageModel: messageModel);
+            messageModel: messageModel,
+            haveOffer: BuiltValueNullFieldError.checkNotNull(
+                haveOffer, r'AdsDetailsState', 'haveOffer'));
     replace(_$result);
     return _$result;
   }

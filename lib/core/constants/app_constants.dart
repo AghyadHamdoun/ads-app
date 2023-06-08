@@ -4,7 +4,6 @@ class AppConstants{
 
   static const String baseUrl = "https://mobileapp.developerwaqas.com/api/";
   static const String login = "/login";
-  static const String register = "/register";
   static const String typesObjects= "get-type-objective";
   static const String postProject= "create-project";
   static const String dashboardData= "get-dashboard-data/";
@@ -20,7 +19,8 @@ class AppConstants{
   static const String history= "get-history/";
   static const String allAds= "get-project-details-to-bid";
   static const String adsDetails= "get-project-details-by-id/";
-
+  static const String addOffer= "post-bid";
+  static const String deleteOffer= "delete-bid-detail-by-id/";
 
 
 

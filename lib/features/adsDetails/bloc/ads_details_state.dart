@@ -19,6 +19,7 @@ abstract class AdsDetailsState implements Built<AdsDetailsState,
   String? get error;
   AdsDetailsModel? get adsDetailsModel;
   MessageModel? get messageModel;
+  bool get haveOffer;
 
 
 
@@ -35,6 +36,7 @@ abstract class AdsDetailsState implements Built<AdsDetailsState,
       ..isLoadingPost = false
       ..isSuccessPost = false
       ..error=''
+        ..haveOffer=false
 
     );
   }

@@ -16,5 +16,12 @@ class DeleteAdsOfferEvent extends AdsDetailsEvent {
   const DeleteAdsOfferEvent({required this.id});
 }
 
+class AddOfferEvent extends AdsDetailsEvent {
+  final Map<String, Object> object;
+  const AddOfferEvent({required this.object});
+}
 
-
+class EditOfferEvent extends AdsDetailsEvent {
+  final Map<String, Object> object;
+  const EditOfferEvent({required this.object});
+}

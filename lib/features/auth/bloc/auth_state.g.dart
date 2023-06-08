@@ -13,23 +13,11 @@ class _$AuthState extends AuthState {
   final String? loginMessage;
   @override
   final LoginModel? loginModel;
-  @override
-  final RequestState? registerState;
-  @override
-  final String? registerMessage;
-  @override
-  final RegisterModel? registerModel;
 
   factory _$AuthState([void Function(AuthStateBuilder)? updates]) =>
       (new AuthStateBuilder()..update(updates))._build();
 
-  _$AuthState._(
-      {this.loginState,
-      this.loginMessage,
-      this.loginModel,
-      this.registerState,
-      this.registerMessage,
-      this.registerModel})
+  _$AuthState._({this.loginState, this.loginMessage, this.loginModel})
       : super._();
 
   @override
@@ -45,10 +33,7 @@ class _$AuthState extends AuthState {
     return other is AuthState &&
         loginState == other.loginState &&
         loginMessage == other.loginMessage &&
-        loginModel == other.loginModel &&
-        registerState == other.registerState &&
-        registerMessage == other.registerMessage &&
-        registerModel == other.registerModel;
+        loginModel == other.loginModel;
   }
 
   @override
@@ -57,9 +42,6 @@ class _$AuthState extends AuthState {
     _$hash = $jc(_$hash, loginState.hashCode);
     _$hash = $jc(_$hash, loginMessage.hashCode);
     _$hash = $jc(_$hash, loginModel.hashCode);
-    _$hash = $jc(_$hash, registerState.hashCode);
-    _$hash = $jc(_$hash, registerMessage.hashCode);
-    _$hash = $jc(_$hash, registerModel.hashCode);
     _$hash = $jf(_$hash);
     return _$hash;
   }
@@ -69,10 +51,7 @@ class _$AuthState extends AuthState {
     return (newBuiltValueToStringHelper(r'AuthState')
           ..add('loginState', loginState)
           ..add('loginMessage', loginMessage)
-          ..add('loginModel', loginModel)
-          ..add('registerState', registerState)
-          ..add('registerMessage', registerMessage)
-          ..add('registerModel', registerModel))
+          ..add('loginModel', loginModel))
         .toString();
   }
 }
@@ -92,21 +71,6 @@ class AuthStateBuilder implements Builder<AuthState, AuthStateBuilder> {
   LoginModel? get loginModel => _$this._loginModel;
   set loginModel(LoginModel? loginModel) => _$this._loginModel = loginModel;
 
-  RequestState? _registerState;
-  RequestState? get registerState => _$this._registerState;
-  set registerState(RequestState? registerState) =>
-      _$this._registerState = registerState;
-
-  String? _registerMessage;
-  String? get registerMessage => _$this._registerMessage;
-  set registerMessage(String? registerMessage) =>
-      _$this._registerMessage = registerMessage;
-
-  RegisterModel? _registerModel;
-  RegisterModel? get registerModel => _$this._registerModel;
-  set registerModel(RegisterModel? registerModel) =>
-      _$this._registerModel = registerModel;
-
   AuthStateBuilder();
 
   AuthStateBuilder get _$this {
@@ -115,9 +79,6 @@ class AuthStateBuilder implements Builder<AuthState, AuthStateBuilder> {
       _loginState = $v.loginState;
       _loginMessage = $v.loginMessage;
       _loginModel = $v.loginModel;
-      _registerState = $v.registerState;
-      _registerMessage = $v.registerMessage;
-      _registerModel = $v.registerModel;
       _$v = null;
     }
     return this;
@@ -142,10 +103,7 @@ class AuthStateBuilder implements Builder<AuthState, AuthStateBuilder> {
         new _$AuthState._(
             loginState: loginState,
             loginMessage: loginMessage,
-            loginModel: loginModel,
-            registerState: registerState,
-            registerMessage: registerMessage,
-            registerModel: registerModel);
+            loginModel: loginModel);
     replace(_$result);
     return _$result;
   }

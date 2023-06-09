@@ -31,6 +31,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
           children: [
             Container(
               height: 0.2.sh,
+              child: Image.asset("assets/logo-1.png"),
             ),
             Container(
               padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 40.h),

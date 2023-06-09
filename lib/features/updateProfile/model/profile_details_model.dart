@@ -39,6 +39,8 @@ class Message {
   String? updatedAt;
   String? averageRating;
   int? orderNumbers;
+  String? profile_picture;
+
 
   Message(
       {this.id,
@@ -55,7 +57,7 @@ class Message {
         this.updatedAt,
         this.averageRating,
         this.orderNumbers,
-        this.description
+        this.description,this.profile_picture
           });
 
   Message.fromJson(Map<String, dynamic> json) {
@@ -74,7 +76,7 @@ class Message {
     averageRating = json['average_rating'];
     orderNumbers = json['order_numbers'];
     description = json['description'];
-
+    description = json['profile_picture'];
 
 
   }

@@ -10,7 +10,7 @@ class RegisterModel {
 
   RegisterModel.fromJson(Map<String, dynamic> json) {
     type = json['type'];
-    user = json['user'] != null ? new User.fromJson(json['user']) : null;
+    user = json['user'] != null ? User.fromJson(json['user']) : null;
     accessToken = json['access_token'];
     message = json['message']??'';
   }

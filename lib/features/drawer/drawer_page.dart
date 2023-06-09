@@ -1,5 +1,7 @@
 import 'dart:io';
 
+import 'package:ads/Preference.dart';
+import 'package:ads/core/constants/key_constants.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -11,8 +13,23 @@ import '../myAds/my_ads_screen.dart';
 import '../postProject/post_project_screen.dart';
 import '../updateProfile/update_profile_screen.dart';
 
-class DrawerPage extends StatelessWidget {
+class DrawerPage extends StatefulWidget {
   const DrawerPage({Key? key}) : super(key: key);
+
+  @override
+  State<DrawerPage> createState() => _DrawerPageState();
+}
+
+class _DrawerPageState extends State<DrawerPage> {
+
+
+  String roleId='';
+
+  @override
+  void initState() {
+    roleId=Preferences.preferences!.getString(KeyConstants.keyRoleId)??'';
+    super.initState();
+  }
 
   void showLanguageDialog(BuildContext context) async {
     // show the loading dialog
@@ -102,7 +119,6 @@ class DrawerPage extends StatelessWidget {
         });
   }
 
-
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -154,7 +170,7 @@ class DrawerPage extends StatelessWidget {
                   ),
                 )),
             SizedBox(height: 20.h,),
-            if(true)...[
+            if(roleId=='2')...[
               ListTile(
                 title: Text('PendingProjects'.tr(),style: TextStyle(
                     fontSize: 14.sp
@@ -167,7 +183,7 @@ class DrawerPage extends StatelessWidget {
                 },
               ),
             ],
-            if(true)
+            if(roleId=='1')
               ...[
                 ListTile(
                   title: Text('PostProject'.tr(),style: TextStyle(

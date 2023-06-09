@@ -1,4 +1,5 @@
 
+import 'package:ads/features/auth/register/api/register_remote.dart';
 import 'package:data_connection_checker_tv/data_connection_checker.dart';
 import 'package:dio/dio.dart';
 import 'package:get_it/get_it.dart';
@@ -11,6 +12,8 @@ import 'features/adsDetails/api/get_ads_details.dart';
 import 'features/adsDetails/bloc/ads_details_bloc.dart';
 import 'features/allAds/api/get_all_ads.dart';
 import 'features/allAds/bloc/all_ads_bloc.dart';
+import 'features/auth/bloc/auth_bloc.dart';
+import 'features/auth/login/api/login_remote.dart';
 import 'features/history/api/get_history.dart';
 import 'features/history/bloc/history_bloc.dart';
 import 'features/myAds/api/delete_ads_remote.dart';
@@ -23,6 +26,7 @@ import 'features/pages/callUs/api/call_us_remote.dart';
 import 'features/pages/callUs/bloc/call_us_bloc.dart';
 import 'features/pages/home/api/get_dashboard_data.dart';
 import 'features/pages/home/bloc/home_bloc.dart';
+import 'features/pages/profile/bloc/profile_bloc.dart';
 import 'features/postProject/api/get_types_objects.dart';
 import 'features/postProject/api/post_project_remote.dart';
 import 'features/postProject/bloc/post_project_bloc.dart';
@@ -125,7 +129,12 @@ Future<void> init() async {
   sl.registerLazySingleton<DeleteOfferDataSource>(
         () => DeleteOfferDataSourceImpl(dio: sl(), networkInfo: sl()),
   );
-
+  sl.registerLazySingleton<BaseLoginRemoteDataSource>(
+        () => LoginRemoteDataSource(dio: sl(), networkInfo: sl()),
+  );
+  sl.registerLazySingleton<BaseRegisterRemoteDataSource>(
+        () => RegisterRemoteDataSource(dio: sl(), networkInfo: sl()),
+  );
 
   // Bloc
   sl.registerLazySingleton(() => PagesBloc());
@@ -175,5 +184,12 @@ Future<void> init() async {
       addOfferDataSource: sl(),
       deleteOfferDataSource: sl()
   ));
+  sl.registerLazySingleton(() => AuthBloc(
+      loginRemoteDataSource: sl()
+  ));
+  sl.registerLazySingleton(() => ProfileBloc(
+      getProfileDetailsRemoteDataSource: sl()
+  ));
+
 
 }

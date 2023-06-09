@@ -1,5 +1,6 @@
 import 'dart:io';
 import 'package:ads/core/mixins/base_mixin.dart';
+import 'package:ads/features/pages/profile/bloc/profile_bloc.dart';
 import 'package:ads/features/pages/profile/profile_page.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
@@ -28,6 +29,7 @@ class _PagesScreenState extends State<PagesScreen> with BaseMixin {
 
   HomeBloc homeBloc=sl<HomeBloc>();
   CallUsBloc callUsBloc=sl<CallUsBloc>();
+  ProfileBloc profileBloc=sl<ProfileBloc>();
 
   @override
   void initState() {
@@ -90,7 +92,9 @@ class _PagesScreenState extends State<PagesScreen> with BaseMixin {
                       Scaffold.of(context).openDrawer();
                     }),
                     SizedBox(),
-                    ProfileScreen(),
+                    ProfileScreen(
+                      profileBloc: profileBloc,
+                    ),
                   ],
                 );
               }

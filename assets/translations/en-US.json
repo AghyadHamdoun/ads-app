@@ -202,5 +202,7 @@
   "Step5Title": "Multiple Options",
   "Step5Description": "The app offers multiple payment options, advertisement mechanisms via the influencer, with a guarantee to get clear results",
   "NoCouponExist": "There is no Coupon",
-  "ExpiredCoupon": "This Coupon is Expired"
+  "ExpiredCoupon": "This Coupon is Expired",
+  "Day": "Day"
+
 }

@@ -1,13 +1,18 @@
 
-import 'package:ads/features/auth/bloc/auth_bloc.dart';
-import 'package:ads/features/auth/login/api/login_remote.dart';
 import 'package:data_connection_checker_tv/data_connection_checker.dart';
 import 'package:dio/dio.dart';
 import 'package:get_it/get_it.dart';
 import 'core/constants/app_constants.dart';
-import 'features/auth/register/api/register_remote.dart';
 import 'features/addAmount/api/add_amount_remote.dart';
 import 'features/addAmount/bloc/add_amount_bloc.dart';
+import 'features/adsDetails/api/add_offer_remote.dart';
+import 'features/adsDetails/api/delete_offer_remote.dart';
+import 'features/adsDetails/api/get_ads_details.dart';
+import 'features/adsDetails/bloc/ads_details_bloc.dart';
+import 'features/allAds/api/get_all_ads.dart';
+import 'features/allAds/bloc/all_ads_bloc.dart';
+import 'features/history/api/get_history.dart';
+import 'features/history/bloc/history_bloc.dart';
 import 'features/myAds/api/delete_ads_remote.dart';
 import 'features/myAds/api/get_my_ads.dart';
 import 'features/myAds/bloc/my_ads_bloc.dart';
@@ -81,15 +86,6 @@ Future<void> init() async {
   sl.registerLazySingleton<GetDashboardDetailsRemoteDataSource>(
         () => GetDashboardDetailsRemoteDataSourceImpl(dio: sl(), networkInfo: sl()),
   );
-  sl.registerLazySingleton<BaseLoginRemoteDataSource>(
-        () => LoginRemoteDataSource(dio: sl(), networkInfo: sl()),
-  );
-
-  sl.registerLazySingleton<BaseRegisterRemoteDataSource>(
-        () => RegisterRemoteDataSource(dio: sl(), networkInfo: sl()),
-  );
-
-
   sl.registerLazySingleton<CallUSDataSource>(
         () => CallUSDataSourceImpl(dio: sl(), networkInfo: sl()),
   );
@@ -114,6 +110,21 @@ Future<void> init() async {
   sl.registerLazySingleton<WithdrawAmountDataSource>(
         () => WithdrawAmountDataSourceImpl(dio: sl(), networkInfo: sl()),
   );
+  sl.registerLazySingleton<GetHistoryRemoteDataSource>(
+        () => GetHistoryRemoteDataSourceImpl(dio: sl(), networkInfo: sl()),
+  );
+  sl.registerLazySingleton<GetAllAdsRemoteDataSource>(
+        () => GetAllAdsRemoteDataSourceImpl(dio: sl(), networkInfo: sl()),
+  );
+  sl.registerLazySingleton<GetAdsDetailsRemoteDataSource>(
+        () => GetAdsDetailsRemoteDataSourceImpl(dio: sl(), networkInfo: sl()),
+  );
+  sl.registerLazySingleton<AddOfferDataSource>(
+        () => AddOfferDataSourceImpl(dio: sl(), networkInfo: sl()),
+  );
+  sl.registerLazySingleton<DeleteOfferDataSource>(
+        () => DeleteOfferDataSourceImpl(dio: sl(), networkInfo: sl()),
+  );
 
 
   // Bloc
@@ -127,10 +138,6 @@ Future<void> init() async {
   sl.registerLazySingleton(() => PostProjectBloc(
     getTypesObjectsRemoteDataSource: sl(),
     postProjectDataSource: sl()
-  ));
-
-  sl.registerLazySingleton(() => AuthBloc(loginRemoteDataSource: sl(), registerRemoteDataSource: sl()
-
   ));
 
   sl.registerLazySingleton(() => CallUsBloc(
@@ -157,6 +164,16 @@ Future<void> init() async {
   sl.registerLazySingleton(() => WithdrawAmountBloc(
     withdrawAmountDataSource: sl(),
   ));
-
+  sl.registerLazySingleton(() => HistoryBloc(
+    getHistoryRemoteDataSource: sl(),
+  ));
+  sl.registerLazySingleton(() => AllAdsBloc(
+    getAllAdsRemoteDataSource: sl()
+  ));
+  sl.registerLazySingleton(() => AdsDetailsBloc(
+      getAdsDetailsRemoteDataSource: sl(),
+      addOfferDataSource: sl(),
+      deleteOfferDataSource: sl()
+  ));
 
 }

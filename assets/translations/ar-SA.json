@@ -45,6 +45,7 @@
   "BidDeletedSuccess": "تم حذف طلب الإعلان بنجاح",
   "YouhaveBidSuccessfully": "تم وضع طلب الإعلان بنجاح",
   "ProjectUpdatedSuccess": "تم تحديث طلب الإعلان بنجاح",
+  "Success": "تم تنفيذ العملية بنجاح",
   "CurrentBalance": "الرصيد الحالي",
   "TotalProjects": "إجمالي الإعلانات",
   "ActiveMilestones": "أهداف الإعلان النشطة",
@@ -198,5 +199,6 @@
   "Step5Title": "خيارات متعددة",
   "Step5Description": "يتيح لك التطبيق العديد من الخيارات لطرق الدفع، اليات الإعلان للمؤثر، ضمان حصولك على نتائج واضحه",
   "NoCouponExist": "الرمز الترويجي خاطيء",
-  "ExpiredCoupon": "تم إنتهاء صلاحية الرمز الترويجي"
+  "ExpiredCoupon": "تم إنتهاء صلاحية الرمز الترويجي",
+  "Day": "يوم"
 }

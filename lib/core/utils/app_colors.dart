@@ -13,7 +13,7 @@ class AppColor {
 
   static const whiteColor =  Color(0xffffffff);
 
-  static const textColor =  Color(0xff333333);
+  static const Color textColor = Color(0xFF27364E);
 
   static const hintText= Color(0xffA8A8A8);
 

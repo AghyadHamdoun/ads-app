@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../core/utils/app_colors.dart';
+import '../allAds/all_ads_screen.dart';
 import '../myAds/my_ads_screen.dart';
 import '../postProject/post_project_screen.dart';
 import '../updateProfile/update_profile_screen.dart';
@@ -153,14 +154,28 @@ class DrawerPage extends StatelessWidget {
                   ),
                 )),
             SizedBox(height: 20.h,),
+            if(true)...[
+              ListTile(
+                title: Text('PendingProjects'.tr(),style: TextStyle(
+                    fontSize: 14.sp
+                ),),
+                onTap: () {
+                  Navigator.push(context, MaterialPageRoute(builder:
+                      (context) =>  const AllAdsScreen(
 
-            ListTile(
-              title: Text('PostProject'.tr(),style: TextStyle(
-                fontSize: 14.sp
-              ),),
-              onTap: () {
-                Navigator.push(context, MaterialPageRoute(builder:
-                    (context) =>  const PostProjectScreen(
+                  ),));
+                },
+              ),
+            ],
+            if(true)
+              ...[
+                ListTile(
+                  title: Text('PostProject'.tr(),style: TextStyle(
+                      fontSize: 14.sp
+                  ),),
+                  onTap: () {
+                    Navigator.push(context, MaterialPageRoute(builder:
+                        (context) =>  const PostProjectScreen(
                       name: '',
                       desc: '',
                       type: 'New',
@@ -169,18 +184,20 @@ class DrawerPage extends StatelessWidget {
                       obj: null,
                       projectId: "",
                     ),));
-                },
-            ),
-            ListTile(
-              title: Text('MyProjects'.tr(),style: TextStyle(
-                  fontSize: 14.sp
-              ),),
-              onTap: () {
-                Navigator.push(context, MaterialPageRoute(
-                  builder: (context) => const MyAdsScreen(),));
+                  },
+                ),
+                ListTile(
+                  title: Text('MyProjects'.tr(),style: TextStyle(
+                      fontSize: 14.sp
+                  ),),
+                  onTap: () {
+                    Navigator.push(context, MaterialPageRoute(
+                      builder: (context) => const MyAdsScreen(),));
 
-              },
-            ),
+                  },
+                ),
+              ],
+
             ListTile(
               title: Text('InProgressProjects'.tr(),style: TextStyle(
                   fontSize: 14.sp

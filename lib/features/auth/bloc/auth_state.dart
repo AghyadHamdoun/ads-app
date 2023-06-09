@@ -43,6 +43,32 @@ abstract class AuthState implements Built<AuthState, AuthStateBuilder> {
           orderNumbers: null,
         ),
         accessToken: '',)
+
+      ..registerState = RequestState.nothing
+      ..registerMessage = ''
+      ..registerModel = RegisterModel(
+        type: '',
+        user: User(
+          id: 0,
+          firstName: '',
+          lastName: '',
+          description: '',
+          profilePicture: '',
+          email: '',
+          emailVerifiedAt: '',
+          contactNumber: '',
+          role: '',
+          status: '0',
+          balance: '',
+          verificationCode: '',
+          mblConfirmationCode: '',
+          createdAt: '',
+          updatedAt: '',
+          averageRating: '',
+          orderNumbers: null,
+        ),
+        accessToken: '', message: '',)
+
     );
   }
 }

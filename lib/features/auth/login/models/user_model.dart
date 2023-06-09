@@ -42,7 +42,7 @@ class User {
     firstName = json['first_name'];
     lastName = json['last_name'];
     description = json['description'];
-    profilePicture = json['profile_picture'];
+    profilePicture = json['profile_picture']??'';
     email = json['email'];
     emailVerifiedAt = json['email_verified_at'];
     contactNumber = json['contact_number'];

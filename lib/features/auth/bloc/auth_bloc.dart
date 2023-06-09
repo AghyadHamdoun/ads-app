@@ -56,6 +56,12 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
            ));
          }
 
+            Preferences.saveUserToken(r.accessToken!);
+            Preferences.saveUserId(r.user!.id!);
+            Preferences.saveUserName(r.user!.firstName!);
+          }));
+        }
+      });
        });
     });
   }
